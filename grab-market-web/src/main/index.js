@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "axios";
 import "./index.css";
+import axios from "axios";
 
 function Mainpage() {
   const [products, setProducts] = React.useState([]);
