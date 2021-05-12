@@ -1,15 +1,15 @@
 import React from "react";
 import "./index.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Mainpage() {
   const [products, setProducts] = React.useState([]);
   React.useEffect(function () {
     axios
-      .get(
-        "https://49b69bb9-2356-4bfc-bfac-cc8e239abc0f.mock.pstmn.io/products"
-      )
+      .get("http://localhost:8080/products")
       .then(function (result) {
+        console.log(result);
         const products = result.data.products;
         setProducts(products);
       })
@@ -35,20 +35,22 @@ function Mainpage() {
           {products.map(function (products, index) {
             return (
               <div className="product-card">
-                <div>
-                  <img className="product-img" src={products.imageUrl} />
-                </div>
-                <div className="product-contents">
-                  <span className="product-name">{products.name}</span>
-                  <span className="product-price">{products.price}원</span>
-                  <div className="product-seller">
-                    <img
-                      className="product-avatar"
-                      src="images/icons/avatar.png"
-                    />
-                    <span>{products.seller}</span>
+                <Link className="product-link" to={`/products/${index}`}>
+                  <div>
+                    <img className="product-img" src={products.imageUrl} />
                   </div>
-                </div>
+                  <div className="product-contents">
+                    <span className="product-name">{products.name}</span>
+                    <span className="product-price">{products.price}원</span>
+                    <div className="product-seller">
+                      <img
+                        className="product-avatar"
+                        src="images/icons/avatar.png"
+                      />
+                      <span>{products.seller}</span>
+                    </div>
+                  </div>
+                </Link>
               </div>
             );
           })}

@@ -1,5 +1,5 @@
 axios
-  .get("https://49b69bb9-2356-4bfc-bfac-cc8e239abc0f.mock.pstmn.io/products")
+  .get("http://localhost:8080/products")
   .then(function (result) {
     console.log("통신결과 : ", result); //result 객체
     const products = result.data.products;
